@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Spring Security身份认证架构 | 静石随笔</title><meta name="author" content="Dickens Hu"><meta name="copyright" content="Dickens Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考 Servlet身份认证架构本文描述了用于Servlet身份验证的Spring安全性的主要体系结构组件。  SecurityContextHolder — Spring Security在SecurityContextHolder中存储身份验证者的详细信息。 SecurityContext — 从SecurityContextHolder中获得，包含当前已认证用户的身份验证。 Authenti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Security身份认证架构">
+<meta property="og:url" content="http://silentstone.cn/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="静石随笔">
+<meta property="og:description" content="参考 Servlet身份认证架构本文描述了用于Servlet身份验证的Spring安全性的主要体系结构组件。  SecurityContextHolder — Spring Security在SecurityContextHolder中存储身份验证者的详细信息。 SecurityContext — 从SecurityContextHolder中获得，包含当前已认证用户的身份验证。 Authenti">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://silentstone.cn/img/avatar.jpg">
+<meta property="article:published_time" content="2023-06-15T09:04:51.000Z">
+<meta property="article:modified_time" content="2023-06-15T09:21:39.166Z">
+<meta property="article:author" content="Dickens Hu">
+<meta property="article:tag" content="Spring Security">
+<meta property="article:tag" content="Architecture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://silentstone.cn/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://silentstone.cn/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Security身份认证架构',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-06-15 17:21:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><span> 随笔系列</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="静石随笔"><span class="site-name">静石随笔</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><span> 随笔系列</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring Security身份认证架构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-15T09:04:51.000Z" title="发表于 2023-06-15 17:04:51">2023-06-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-15T09:21:39.166Z" title="更新于 2023-06-15 17:21:39">2023-06-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/Spring-Security/">Spring Security</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring Security身份认证架构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-security/reference/servlet/authentication/architecture.html">参考</a></p>
+<h1 id="Servlet身份认证架构"><a href="#Servlet身份认证架构" class="headerlink" title="Servlet身份认证架构"></a>Servlet身份认证架构</h1><p>本文描述了用于Servlet身份验证的Spring安全性的主要体系结构组件。</p>
+<ul>
+<li>SecurityContextHolder — Spring Security在SecurityContextHolder中存储身份验证者的详细信息。</li>
+<li>SecurityContext — 从SecurityContextHolder中获得，包含当前已认证用户的身份验证。</li>
+<li>Authentication — 可以是AuthenticationManager的输入，来提供用户已经向验证提供的凭据；或SecurityContext中的当前用户。</li>
+<li>GrantedAuthority — 在身份验证上授予主体的权限(即角色、范围等)。</li>
+<li>AuthenticationManager — 定义Spring Security的过滤器如何执行身份验证的API。</li>
+<li>ProviderManager — AuthenticationManager最常见的实现。</li>
+<li>AuthenticationProvider — 由ProviderManager用于执行特定类型的身份验证。</li>
+<li>使用AuthenticationEntryPoint请求凭据 — 用于从客户端请求凭据(即重定向到登录页面，发送WWW-Authenticate响应等)</li>
+<li>AbstractAuthenticationProcessingFilter — 用于身份验证的基本过滤器。这也很好地说明了身份验证的高层级流程以及各个部分如何协同工作。</li>
+</ul>
+<h1 id="SecurityContextHolder"><a href="#SecurityContextHolder" class="headerlink" title="SecurityContextHolder"></a>SecurityContextHolder</h1><p>在Spring Security的认证模型中心位置的是SecurityContextHolder。<br>它包含着SecurityContext。</p>
+<p><img src="/img/IT/SpringSecurity/Spring-Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84-1.png" alt="SecurityContextHolder"></p>
+<p>SecurityContextHolder是Spring Security存储身份验证者的详细信息的地方。<br>Spring Security并不关心如何填充SecurityContextHolder。<br>如果包含值，则用作当前已验证的用户。</p>
+<p>表明用户已通过身份验证的最简单方法是直接设置SecurityContextHolder:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SecurityContext</span> <span class="variable">context</span> <span class="operator">=</span> SecurityContextHolder.createEmptyContext(); </span><br><span class="line"><span class="type">Authentication</span> <span class="variable">authentication</span> <span class="operator">=</span></span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">TestingAuthenticationToken</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>, <span class="string">&quot;ROLE_USER&quot;</span>); </span><br><span class="line">context.setAuthentication(authentication);</span><br><span class="line"></span><br><span class="line">SecurityContextHolder.setContext(context);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们首先创建一个空的SecurityContext。您应该创建一个新的SecurityContext实例，来避免多线程间的竞争情况，而不是使用SecurityContextHolder.getContext(). setauthentication (authentication)。</li>
+<li>接下来，我们创建一个新的Authentication对象。Spring Security并不关心在SecurityContext上设置了什么类型的身份验证实现。这里，我们使用TestingAuthenticationToken，因为它非常简单。更常见的生产场景是UsernamePasswordAuthenticationToken(用户详细信息、密码、权限)。</li>
+<li>最后，我们在SecurityContextHolder上设置了SecurityContext。Spring Security使用此信息进行授权。</li>
+</ul>
+<p>要获得关于经过身份验证的主体的信息，访问SecurityContextHolder即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">SecurityContext</span> <span class="variable">context</span> <span class="operator">=</span> SecurityContextHolder.getContext();</span><br><span class="line"><span class="type">Authentication</span> <span class="variable">authentication</span> <span class="operator">=</span> context.getAuthentication();</span><br><span class="line"><span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> authentication.getName();</span><br><span class="line"><span class="type">Object</span> <span class="variable">principal</span> <span class="operator">=</span> authentication.getPrincipal();</span><br><span class="line">Collection&lt;? <span class="keyword">extends</span> <span class="title class_">GrantedAuthority</span>&gt; authorities = authentication.getAuthorities();</span><br></pre></td></tr></table></figure>
+<p>默认情况下，SecurityContextHolder使用ThreadLocal来存储这些细节，这意味着即使SecurityContext没有显式地作为参数传递给这些方法，SecurityContext也始终对同一线程中的方法可用。<br>需要注意在当前主体的请求处理后清除线程，以保证方式使用ThreadLocal是安全的。<br>Spring Security的FilterChainProxy确保SecurityContext总是被清除。</p>
+<p>由于处理线程的特定方式，有些应用程序并不完全适合使用ThreadLocal。例如，Swing客户端可能希望Java虚拟机中的所有线程使用相同的安全上下文。您可以在启动时使用策略配置SecurityContextHolder，以指定您希望如何存储上下文。</p>
+<ul>
+<li>对于一个独立运行的应用程序，您将使用SecurityContextHolder.MODE_GLOBAL策略。</li>
+<li>其他应用程序可能希望由安全线程生成的线程也具有相同的安全标识。你可以通过使用SecurityContextHolder.MODE_INHERITABLETHREADLOCAL来实现这一点。</li>
+</ul>
+<p>有两种方式替换默认的模式SecurityContextHolder.MODE_THREADLOCAL：</p>
+<ul>
+<li>首先是设置一个系统属性。</li>
+<li>第二种方法是调用SecurityContextHolder上的静态方法。</li>
+</ul>
+<p>大多数应用程序不需要更改默认值。但是，如果您需要，请查看SecurityContextHolder的JavaDoc以了解更多信息。</p>
+<h1 id="SecurityContext"><a href="#SecurityContext" class="headerlink" title="SecurityContext"></a>SecurityContext</h1><p>SecurityContext是从SecurityContextHolder中获得的。<br>SecurityContext包含一个Authentication对象。</p>
+<h1 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h1><p>Authentication接口在Spring Security中有两个主要用途:</p>
+<ul>
+<li>AuthenticationManager的输入，用于提供用户为进行身份验证所提供的凭据。在此场景中使用时，isAuthenticated()返回false。</li>
+<li>表示当前已验证的用户。您可以从SecurityContext中获取当前的Authentication。</li>
+</ul>
+<p>认证包括:</p>
+<ul>
+<li>主体：用户标识。当使用用户名&#x2F;密码进行身份验证时，这通常是UserDetails的实例。</li>
+<li>凭证：通常是密码。在许多情况下，在用户通过身份验证后，将清除该选项，以确保它不会泄漏。</li>
+<li>授权：GrantedAuthority实例是授予用户的高层级权限。比如：角色和作用域。</li>
+</ul>
+<h1 id="GrantedAuthority"><a href="#GrantedAuthority" class="headerlink" title="GrantedAuthority"></a>GrantedAuthority</h1><p>GrantedAuthority实例是授予用户的高层级权限。比如：Role和Scope。<br>您可以从Authentication.getAuthorities()方法获取GrantedAuthority实例。该方法提供了一个GrantedAuthority对象的集合。<br>毫无疑问，授予的授权是授予主体的授权。这种权限通常是“角色”，例如ROLE_ADMINISTRATOR或ROLE_HR_SUPERVISOR。这些角色稍后将配置为web授权、方法授权和域对象授权。Spring Security的其他部分解释这些权限，并期望它们出现。<br>当使用基于用户名&#x2F;密码的身份验证时，GrantedAuthority实例通常由UserDetailsService加载。<br>通常，GrantedAuthority对象是应用程序范围的权限。它们并不特定于给定的域对象。<br>因此，您不太可能有一个GrantedAuthority来表示对编号54的Employee对象的权限，因为如果有数千个这样的权限，您将很快耗尽内存(或者，至少会导致应用程序花费很长时间来验证用户)。当然，Spring Security是专门为处理这种常见需求而设计的，但是您应该使用项目的域对象安全功能来实现这一目的。</p>
+<h1 id="AuthenticationManager"><a href="#AuthenticationManager" class="headerlink" title="AuthenticationManager"></a>AuthenticationManager</h1><p>AuthenticationManager是定义Spring Security的过滤器如何执行身份验证的API。然后，由调用AuthenticationManager的控制器(即Spring Security的Filters实例)在SecurityContextHolder上设置返回的身份验证。如果你没有集成Spring Security的Filters实例，你可以直接设置SecurityContextHolder，不需要使用AuthenticationManager。<br>虽然AuthenticationManager的实现可以是任何东西，但最常见的实现是ProviderManager。</p>
+<h1 id="ProviderManager"><a href="#ProviderManager" class="headerlink" title="ProviderManager"></a>ProviderManager</h1><p>ProviderManager是AuthenticationManager最常用的实现。<br>ProviderManager委托给AuthenticationProvider实例的列表。<br>每个AuthenticationProvider都有机会指示身份验证应该成功、失败，或者指示它不能做出决定并让下游的AuthenticationProvider来决定。<br>如果配置的AuthenticationProvider实例都不能进行身份验证，则身份验证失败，并出现ProviderNotFoundException。这是一个特殊的AuthenticationException，指示ProviderManager未配置为支持传递给它的身份验证类型。</p>
+<p><img src="/img/IT/SpringSecurity/Spring-Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84-2.png" alt="ProviderManager"></p>
+<p>实际上，每个AuthenticationProvider都知道如何执行特定类型的身份验证。例如，一个AuthenticationProvider可能能够验证用户名&#x2F;密码，而另一个AuthenticationProvider可能能够验证SAML断言。这允许每个AuthenticationProvider执行一种非常特定的身份验证类型，同时支持多种类型的身份验证，并且只公开一个AuthenticationManager Bean。<br>ProviderManager还允许配置可选的父AuthenticationManager，在没有AuthenticationProvider可以执行身份验证的情况下，将参考该父AuthenticationManager。父对象可以是任何类型的AuthenticationManager，但它通常是ProviderManager的一个实例。</p>
+<p><img src="/img/IT/SpringSecurity/Spring-Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84-3.png" alt="ProviderManager实例"></p>
+<p>事实上，多个ProviderManager实例可能共享同一个父AuthenticationManager。这在有多个SecurityFilterChain实例的场景中比较常见，这些实例有一些共同的身份验证(共享的父AuthenticationManager)，但也有不同的身份验证机制(不同的ProviderManager实例)。</p>
+<p><img src="/img/IT/SpringSecurity/Spring-Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84-4.png" alt="不同的ProviderManager实例"></p>
+<p>默认情况下，ProviderManager尝试从成功的身份验证请求返回的Authentication对象中清除任何敏感凭据信息。这可以防止信息(比如密码)在HttpSession中保留的时间超过所需的时间。<br>例如，当您使用用户对象的缓存来提高无状态应用程序中的性能时，这可能会导致问题。如果Authentication包含对缓存中的对象的引用(例如UserDetails实例)，并且删除了它的凭据，则不再可能根据缓存的值进行身份验证。如果使用缓存，则需要考虑到这一点。一个明显的解决方案是首先在缓存实现中或在创建返回的Authentication对象的AuthenticationProvider中复制该对象。或者，您也可以在ProviderManager上禁用eraseCredentialsAfterAuthentication属性。有关Javadoc类，请参阅Javadoc。</p>
+<h1 id="AuthenticationProvider"><a href="#AuthenticationProvider" class="headerlink" title="AuthenticationProvider"></a>AuthenticationProvider</h1><p>您可以向ProviderManager中注入多个AuthenticationProviders实例。<br>每个AuthenticationProvider执行特定类型的身份验证。例如，DaoAuthenticationProvider支持基于用户名&#x2F;密码的身份验证，而JwtAuthenticationProvider支持验证JWT令牌。</p>
+<h1 id="使用AuthenticationEntryPoint请求凭证"><a href="#使用AuthenticationEntryPoint请求凭证" class="headerlink" title="使用AuthenticationEntryPoint请求凭证"></a>使用AuthenticationEntryPoint请求凭证</h1><p>AuthenticationEntryPoint用于发送用以从客户端请求凭据的HTTP响应。<br>有时，客户端主动包含凭据(例如用户名和密码)来请求资源。在这些情况下，Spring Security不需要提供从客户端请求凭据的HTTP响应，因为已经包含了凭据。<br>在其他情况下，客户端向未被授权访问的资源发出未经身份验证的请求。在这种情况下，使用AuthenticationEntryPoint的某个实现从客户端请求凭据。AuthenticationEntryPoint的实现可以执行重定向到登录页面，使用WWW-Authenticate报头响应，或采取其他操作。</p>
+<h1 id="AbstractAuthenticationProcessingFilter"><a href="#AbstractAuthenticationProcessingFilter" class="headerlink" title="AbstractAuthenticationProcessingFilter"></a>AbstractAuthenticationProcessingFilter</h1><p>AbstractAuthenticationProcessingFilter用作对用户凭证进行身份验证的基本过滤器。在对凭证进行身份验证之前，Spring Security通常使用AuthenticationEntryPoint请求凭证。<br>接下来，AbstractAuthenticationProcessingFilter可以对提交给它的任何身份验证请求进行身份验证。</p>
+<p><img src="/img/IT/SpringSecurity/Spring-Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84-5.png" alt="AbstractAuthenticationProcessingFilter"></p>
+<p>(1)当用户提交他们的凭证时，AbstractAuthenticationProcessingFilter从HttpServletRequest创建一个Authentication对象来进行身份验证。创建的Authentication对象类型取决于AbstractAuthenticationProcessingFilter的子类。例如，UsernamePasswordAuthenticationFilter创建一个UsernamePasswordAuthenticationToken对象，并从HttpServletRequest中获取提交的用户名和密码。<br>(2)接下来，Authentication对象被传递到AuthenticationManager进行身份验证。<br>(3)如果认证失败，则失败。</p>
+<ul>
+<li>SecurityContextHolder被清除。</li>
+<li>RememberMeServices.loginFail被调用。如果没有配置remember me，则不做任何操作。</li>
+<li>调用AuthenticationFailureHandler。<br>(4)如果认证成功，则表示成功。</li>
+<li>SessionAuthenticationStrategy被通知有一个新的登录。</li>
+<li>在SecurityContextHolder上设置Authentication对象。之后，SecurityContextPersistenceFilter将SecurityContext保存到HttpSession。</li>
+<li>RememberMeServices.loginSuccess被调用。如果没有配置remember me，则不做任何操作。</li>
+<li>ApplicationEventPublisher发布一个InteractiveAuthenticationSuccessEvent事件对象。</li>
+<li>调用AuthenticationSuccessHandler。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://silentstone.cn">Dickens Hu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://silentstone.cn/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/">http://silentstone.cn/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://silentstone.cn" target="_blank">静石随笔</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring-Security/">Spring Security</a><a class="post-meta__tags" href="/tags/Architecture/">Architecture</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/IT/Spring%20Framework/Spring%20Boot/Spring%20Boot%E9%85%8D%E7%BD%AE%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Web%E6%9C%8D%E5%8A%A1/" title="Spring Boot配置基于Servlet的Web服务"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Spring Boot配置基于Servlet的Web服务</div></div></a></div><div class="next-post pull-right"><a href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E9%A1%B6%E5%B1%82%E6%9E%B6%E6%9E%84/" title="Spring Security顶层架构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring Security顶层架构</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/" title="Spring Security权限认证架构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-29</div><div class="title">Spring Security权限认证架构</div></div></a></div><div><a href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E9%A1%B6%E5%B1%82%E6%9E%B6%E6%9E%84/" title="Spring Security顶层架构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">Spring Security顶层架构</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dickens Hu</div><div class="author-info__description">工作学习过程中的各种笔记、记录、总结，以及生活中偶尔的感慨或者纯粹的记录。很高兴你发现了这里，enjoy!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/pumasun"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Servlet%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Servlet身份认证架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SecurityContextHolder"><span class="toc-number">2.</span> <span class="toc-text">SecurityContextHolder</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SecurityContext"><span class="toc-number">3.</span> <span class="toc-text">SecurityContext</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Authentication"><span class="toc-number">4.</span> <span class="toc-text">Authentication</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GrantedAuthority"><span class="toc-number">5.</span> <span class="toc-text">GrantedAuthority</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AuthenticationManager"><span class="toc-number">6.</span> <span class="toc-text">AuthenticationManager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ProviderManager"><span class="toc-number">7.</span> <span class="toc-text">ProviderManager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AuthenticationProvider"><span class="toc-number">8.</span> <span class="toc-text">AuthenticationProvider</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8AuthenticationEntryPoint%E8%AF%B7%E6%B1%82%E5%87%AD%E8%AF%81"><span class="toc-number">9.</span> <span class="toc-text">使用AuthenticationEntryPoint请求凭证</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AbstractAuthenticationProcessingFilter"><span class="toc-number">10.</span> <span class="toc-text">AbstractAuthenticationProcessingFilter</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/" title="Spring Security权限认证架构">Spring Security权限认证架构</a><time datetime="2023-06-29T08:55:03.000Z" title="发表于 2023-06-29 16:55:03">2023-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Spring%20Security%20Authorization%E9%9B%86%E6%88%90/" title="基于Servlet的Spring Security Authorization集成">基于Servlet的Spring Security Authorization集成</a><time datetime="2023-06-29T08:29:25.000Z" title="发表于 2023-06-29 16:29:25">2023-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Spring%20Security%20Authentication%E9%9B%86%E6%88%90/" title="基于Servlet的Spring Security Authentication集成">基于Servlet的Spring Security Authentication集成</a><time datetime="2023-06-26T08:29:25.000Z" title="发表于 2023-06-26 16:29:25">2023-06-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Framework/Spring%20Boot/Spring%20Boot%E7%AE%80%E4%BB%8B/" title="Spring Boot简介">Spring Boot简介</a><time datetime="2023-06-16T09:56:01.950Z" title="发表于 2023-06-16 17:56:01">2023-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Framework/Spring%20Boot/Spring%20Boot%E9%85%8D%E7%BD%AE%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Web%E6%9C%8D%E5%8A%A1/" title="Spring Boot配置基于Servlet的Web服务">Spring Boot配置基于Servlet的Web服务</a><time datetime="2023-06-16T02:41:46.133Z" title="发表于 2023-06-16 10:41:46">2023-06-16</time></div></div></div></div></div></div></main><footer id="footer" style="background: #13161e"><div id="footer-wrap"><div class="copyright">&copy;2015 - 2023 By Dickens Hu</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">鲁ICP备15029721号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
