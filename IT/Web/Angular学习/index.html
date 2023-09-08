@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Angular学习 | 静石随笔</title><meta name="author" content="Dickens Hu"><meta name="copyright" content="Dickens Hu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Angular学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular学习">
+<meta property="og:url" content="http://silentstone.cn/IT/Web/Angular%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="静石随笔">
+<meta property="og:description" content="Angular学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://silentstone.cn/img/avatar.jpg">
+<meta property="article:published_time" content="2023-09-04T03:28:37.000Z">
+<meta property="article:modified_time" content="2023-09-08T06:30:34.131Z">
+<meta property="article:author" content="Dickens Hu">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Angular">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://silentstone.cn/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://silentstone.cn/IT/Web/Angular%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Angular学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-08 14:30:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><span> 随笔系列</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="静石随笔"><span class="site-name">静石随笔</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><span> 随笔系列</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Angular学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-04T03:28:37.000Z" title="发表于 2023-09-04 11:28:37">2023-09-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-08T06:30:34.131Z" title="更新于 2023-09-08 14:30:34">2023-09-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web/">Web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>22分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Angular学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://angular.io/">官网En</a><br><a target="_blank" rel="noopener" href="https://angular.cn/">官网Zh</a></p>
+<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><p>最早接触Angular的版本是1.x，各种无法解决的问题与繁琐的写法。<br>再一次进入我视野的时候，Angular的版本已经更新到 v16。<br>既然仍然可以与React和Vue抗衡，应该值的一看。</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><p>不再赘述，参考<a target="_blank" rel="noopener" href="https://angular.cn/guide/setup-local">链接</a></p>
+<h2 id="看例子-视频"><a href="#看例子-视频" class="headerlink" title="看例子 + 视频"></a>看例子 + 视频</h2><p>我看了，可以快速建立大体印象<br><a target="_blank" rel="noopener" href="https://angular.cn/tutorial/first-app">教程</a><br><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PL1w1q3fL4pmj9k1FrJ3Pe91EPub2_h4jF">视频_Youtube</a></p>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><h2 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h2><ol>
+<li><code>ngOnChanges</code>	当输入或输出绑定值更改时。</li>
+<li><code>ngOnInit</code>	在第一个 ngOnChanges 之后。</li>
+<li><code>ngDoCheck</code>	开发人员的自定义变更检测。</li>
+<li><code>ngAfterContentInit</code>	组件内容初始化后。</li>
+<li><code>ngAfterContentChecked</code>	在每次检查组件内容之后。</li>
+<li><code>ngAfterViewInit</code>	在组件的视图被初始化之后。</li>
+<li><code>ngAfterViewChecked</code>	在每次检查组件视图之后。</li>
+<li><code>ngOnDestroy</code> 在指令被销毁之前。</li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    <span class="attr">selector</span>: <span class="string">&#x27;my-component&#x27;</span>,</span><br><span class="line">    <span class="attr">template</span>: <span class="string">``</span>,</span><br><span class="line">    <span class="attr">style</span>: []</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">MyComponent</span>&#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="如何定义"><a href="#如何定义" class="headerlink" title="如何定义"></a>如何定义</h3><ol>
+<li>通过<code>template</code>指定模板字符串。适合内容简单的组件。</li>
+<li>通过<code>templateUrl</code>指定HTML文件，提供模板信息。适合内容比较复杂的组件。</li>
+</ol>
+<h3 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h3><h4 id="模板表达式"><a href="#模板表达式" class="headerlink" title="模板表达式"></a>模板表达式</h4><p>类似于 JavaScript 表达式</p>
+<h2 id="不支持-赋值（-）-运算符，比如-new、typeof-或-instanceof-等。-串联表达式-或-自增和自减运算符：-和-一些-ES2015-版本的运算符-位运算，比如-和-amp"><a href="#不支持-赋值（-）-运算符，比如-new、typeof-或-instanceof-等。-串联表达式-或-自增和自减运算符：-和-一些-ES2015-版本的运算符-位运算，比如-和-amp" class="headerlink" title="不支持- 赋值（=, +=, -=, ...）- 运算符，比如 new、typeof 或 instanceof 等。- 串联表达式;或,- 自增和自减运算符：++ 和 --- 一些 ES2015+ 版本的运算符- 位运算，比如 | 和 &amp;"></a>不支持<br>- 赋值（<code>=</code>, <code>+=</code>, <code>-=</code>, <code>...</code>）<br>- 运算符，比如 <code>new</code>、<code>typeof</code> 或 <code>instanceof</code> 等。<br>- 串联表达式<code>;</code>或<code>,</code><br>- 自增和自减运算符：<code>++</code> 和 <code>--</code><br>- 一些 ES2015+ 版本的运算符<br>- 位运算，比如 <code>|</code> 和 <code>&amp;</code></h2><p>额外支持基本赋值(<code>=</code>)和分号(<code>;</code>)串联表达式</p>
+<ul>
+<li>例如在<code>*ngTemplateOutlet</code>表达式中，可以使用<code>;</code>串联的表达式<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-container</span> *<span class="attr">ngTemplateOutlet</span>=<span class="string">&quot;sk; context: myContext&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="文本插值"><a href="#文本插值" class="headerlink" title="文本插值"></a>文本插值</h4><p>使用双花括号<code>&#123;&#123;`和`&#125;&#125;</code>包裹的表达式嵌入到<strong>文本</strong>中。<br>其中，表达式可以为组件的属性，也可以为函数调用。</p>
+<blockquote>
+<p>TODO 是否支持其他的表达式？有什么限制？</p>
+</blockquote>
+<h4 id="模板上下文"><a href="#模板上下文" class="headerlink" title="模板上下文"></a>模板上下文</h4><p>模板只能引用模板上下文中的内容，通常是组件实例。</p>
+<ul>
+<li><strong>输入变量</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tag</span> [<span class="attr">attr</span>]=<span class="string">&quot;componentField1&quot;</span> (<span class="attr">event</span>)=<span class="string">&quot;componentMethod()&quot;</span>&gt;</span>&#123;&#123;componentField2&#125;&#125;<span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>语法变量</strong> <ul>
+<li>组件的 事件处理 方法中，可以使用模板上下文变量 <code>$event</code> 用作参数<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;onSave($event)&quot;</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><code>ngFor</code>的表达式中，会创建遍历用临时变量<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of items&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;clickAction(item)&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>引用变量</strong> 使用<code>#name</code>标记的标签，其组件实例会被作为上下文变量<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> #<span class="attr">formName</span> (<span class="attr">ngSubmit</span>)=<span class="string">&quot;onSubmit(formName)&quot;</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="Attribute绑定"><a href="#Attribute绑定" class="headerlink" title="Attribute绑定"></a>Attribute绑定</h4><p>用于设置无障碍性访问、动态设置样式属性等场景。</p>
+<p>Attribute绑定以<code>attr</code>作为前缀，<code>.</code>作为连接，后面指定要设定的attribute名称。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> [<span class="attr">attr.aria-label</span>]=<span class="string">&quot;actionName&quot;</span>&gt;</span>&#123;&#123;actionName&#125;&#125; with Aria<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">td</span> [<span class="attr">attr.colspan</span>]=<span class="string">&quot;spanNum&quot;</span>&gt;</span>...<span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Class绑定"><a href="#Class绑定" class="headerlink" title="Class绑定"></a>Class绑定</h4><p>用于动态设定CSS类</p>
+<ul>
+<li>单一类绑定, 通过boolean表达式决定是否添加某个样式类<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.styleClassName</span>]=<span class="string">&quot;booleanExpOrField&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>多重类绑定<ul>
+<li><code>string</code>表达式，由空格分隔的多个样式类组成的字符串</li>
+<li><code>string[]</code>表达式，由样式类字符串组成的字符串数组</li>
+<li><code>Record&lt;string,boolean&gt;</code>表达式，由样式类作为key,boolean作为值的对象，当值为true是适用样式类</li>
+</ul>
+</li>
+</ul>
+<h4 id="Style绑定"><a href="#Style绑定" class="headerlink" title="Style绑定"></a>Style绑定</h4><p>用于动态设定CSS属性</p>
+<ul>
+<li>单一样式绑定<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.width</span>]=<span class="string">&quot;100px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>带单位的单一样式绑定<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style.width.px</span>]=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>多重样式绑定，分号<code>;</code>分隔的字符串<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style</span>]=<span class="string">&quot;width: 100px; height: 100px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>多重样式绑定，<code>Record&lt;string,boolean&gt;</code>表达式<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">style</span>]=<span class="string">&quot;&#123;width: &#x27;100px&#x27;, height: &#x27;100px&#x27;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h4><p>事件绑定使用括号(<code>(</code>和<code>)</code>)标识监听的事件名称，属性值为事件响应表达式，并使用<code>$event</code>变量名表示事件参数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;clickAction($event)&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="绑定到键盘事件"><a href="#绑定到键盘事件" class="headerlink" title="绑定到键盘事件"></a>绑定到键盘事件</h5><p>适用<code>keydown</code>关键字，可以绑定键盘事件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> (<span class="attr">keydown.shift.t</span>)=<span class="string">&quot;onKeydown($event)&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>键盘事件可以分为两种,如果不指定类型，则默认绑定到键值:</p>
+<ul>
+<li><p>键值绑定</p>
+<p><code>keydown.key.</code>+以点号<code>.</code>分隔的键值组合</p>
+</li>
+<li><p>键码绑定</p>
+<p>在不同操作系统或者区分修饰键左右的情况下，键值绑定可能无法满足需要，此是可以使用键码绑定。</p>
+<p><code>keydown.code.</code>+以点号<code>.</code>分隔的键码组合</p>
+</li>
+</ul>
+<h4 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h4><p>Angular 的双向绑定语法是方括号和圆括号的组合 <code>[()]</code>。<code>[]</code> 进行属性绑定，<code>()</code> 进行事件绑定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-sizer</span> [(<span class="attr">size</span>)]=<span class="string">&quot;fontSizePx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-sizer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-sizer</span> [<span class="attr">size</span>]=<span class="string">&quot;fontSizePx&quot;</span> (<span class="attr">sizeChange</span>)=<span class="string">&quot;fontSizePx=$event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-sizer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为了使双向数据绑定有效，<code>@Output()</code> 属性的名字必须遵循 <code>inputChange</code> 模式，其中 <code>input</code> 是相应 <code>@Input()</code> 属性的名字。比如，如果 <code>@Input()</code> 属性为 <code>size</code>，则 <code>@Output()</code> 属性必须为 <code>sizeChange</code>。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Input</span>()  size!: <span class="built_in">number</span> | <span class="built_in">string</span>;</span><br><span class="line"><span class="meta">@Output</span>() sizeChange = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>&lt;<span class="built_in">number</span>&gt;();</span><br></pre></td></tr></table></figure>
+<h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p>管道是在模板表达式中使用的简单函数，用于接受输入值并返回转换后的值。<br>可以使用管道来转换字符串、货币金额、日期和其他数据以进行显示。</p>
+<h5 id="管道参数"><a href="#管道参数" class="headerlink" title="管道参数"></a>管道参数</h5><p>有些管道可以接收参数，比如日期管道(<code>date</code>)可以接收日期格式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My Birthday is &#123;&#123; birthday | date:&quot;MM/dd/yy&quot; &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="管道串联"><a href="#管道串联" class="headerlink" title="管道串联"></a>管道串联</h5><p>可以对管道进行串联，以便一个管道的输出成为下一个管道的输入。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My Birthday is &#123;&#123; birthday | date:&quot;MM/dd/yy&quot; | uppercase &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="常用内置管道"><a href="#常用内置管道" class="headerlink" title="常用内置管道"></a>常用内置管道</h5><ul>
+<li><code>AsyncPipe</code>	<br>从一个异步回执中解出一个值。</li>
+<li><code>CurrencyPipe</code>	<br>将数字转换为货币字符串，根据确定组大小和分隔符、小数点字符和其他特定于区域设置的配置的区域设置规则进行格式化。</li>
+<li><code>DatePipe</code>	<br>根据区域设置规则格式化日期值。</li>
+<li><code>DecimalPipe</code>	<br>根据数字选项和区域设置规则格式化值。区域设置确定组的大小和分隔符、小数点字符和其他特定于区域设置的配置。</li>
+<li><code>I18nPluralPipe</code>	<br>将值映射到根据语言环境规则对该值进行复数化的字符串。</li>
+<li><code>I18nSelectPipe</code>	<br>通用选择器，用于显示与当前值匹配的字符串。</li>
+<li><code>JsonPipe</code>	<br>把一个值转换成 JSON 字符串格式。在调试时很有用。</li>
+<li><code>KeyValuePipe</code>	<br>将 Object 或 Map 转换为键值对数组。</li>
+<li><code>LowerCasePipe</code>	<br>把文本转换成全小写形式。</li>
+<li><code>PercentPipe</code>	<br>将数字转换为百分比字符串，根据确定组大小和分隔符、小数点字符和其他特定于区域设置的配置的区域设置规则进行格式化。</li>
+<li><code>SlicePipe</code>	<br>从一个 Array 或 String 中创建其元素一个新子集（slice）。</li>
+<li><code>TitleCasePipe</code>	<br>把文本转换成标题形式。 把每个单词的第一个字母转成大写形式，并把单词的其余部分转成小写形式。 单词之间用任意空白字符进行分隔，比如空格、Tab 或换行符。</li>
+<li><code>UpperCasePipe</code>	<br>把文本转换成全大写形式。</li>
+</ul>
+<blockquote>
+<p>管道操作符要比三目运算符（?:）的优先级高。</p>
+<p>由于这种优先级设定，如果你要用管道处理三目元算符的结果，就要把整个表达式包裹在括号中</p>
+<p><code>&#123;&#123; (true ? 'true' : 'false') | uppercase &#125;&#125;</code></p>
+</blockquote>
+<h4 id="引用变量"><a href="#引用变量" class="headerlink" title="引用变量"></a>引用变量</h4><p>在模板中，使用井号 <code>#</code> 来声明一个模板变量。模板变量可以引用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> #<span class="attr">phone</span> <span class="attr">placeholder</span>=<span class="string">&quot;phone number&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;callPhone(phone.value)&quot;</span>&gt;</span>Call<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>模板中的DOM 元素</p>
+<p>如果在标准的 HTML 标记上声明变量，该变量就会引用该元素。</p>
+</li>
+<li><p>指令或组件</p>
+<p>如果在组件上声明变量，该变量就会引用该组件实例。</p>
+</li>
+<li><p>来自 <code>ng-template</code> 的 <code>TemplateRef</code></p>
+<p>如果你在 <code>&lt;ng-template&gt;</code> 元素上声明变量，该变量就会引用一个 <code>TemplateRef</code> 实例来代表此模板。</p>
+</li>
+<li><p>Web 组件</p>
+</li>
+</ul>
+<h5 id="指定引用的名称"><a href="#指定引用的名称" class="headerlink" title="指定引用的名称"></a>指定引用的名称</h5><p>由于标签可能存在多种类型(DOM、组件、指令)，需要指定引用的名称来声明要引用的类型。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> #<span class="attr">itemForm</span>=<span class="string">&quot;ngForm&quot;</span> (<span class="attr">ngSubmit</span>)=<span class="string">&quot;onSubmit(itemForm)&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在为引用指定<code>ngForm</code>名称，则<code>itemForm</code>为<code>NgForm</code>类型。如果不指定，则<code>itemForm</code>为<code> HTMLFormElement</code>类型。</p>
+<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p>声明引用变量的模板范围</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ol>
+<li>处于安全考虑，不支持<code>&lt;script&gt;</code>标签,会被Angular忽略。</li>
+<li>除了HTML,<code>SVG</code>也可以作为Angular模板。并像 HTML 模板一样使用指令和绑定</li>
+</ol>
+<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><h3 id="如何定义-1"><a href="#如何定义-1" class="headerlink" title="如何定义"></a>如何定义</h3><ol>
+<li>通过<code>style</code>指定样式数组,定义一个或者多个内联样式。适合内容简单的组件。</li>
+<li>通过<code>styleUrls</code>指定CSS文件数组，可以指定多个CSS文件哦！。适合内容比较复杂的组件。</li>
+<li>内联在模板的 HTML 中</li>
+<li>通过 CSS 文件导入, 可以在styleUrls指定的CSS文件中导入其他CSS文件<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* AOT编译器需要`./`来提示正在使用本地文件 */</span></span><br><span class="line"><span class="comment">/* 目录相对于当前CSS的目录 */</span></span><br><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;./path-to-imported-style.css&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="样式的范围"><a href="#样式的范围" class="headerlink" title="样式的范围"></a>样式的范围</h3><p>通过<code>@Component</code>的<code>encapsulation</code>选项，可以设定当前组件样式的适用范围。</p>
+<ol>
+<li><code>ViewEncapsulation.ShadowDom</code> 仅限当前组件，采用浏览器内置API实现</li>
+<li><code>ViewEncapsulation.Emulated</code> 仅限当前组件，采用添加随机属性实现</li>
+<li><code>ViewEncapsulation.None</code> 适用于全局</li>
+</ol>
+<h3 id="支持自定义样式"><a href="#支持自定义样式" class="headerlink" title="支持自定义样式"></a>支持自定义样式</h3><ol>
+<li>使用CSS自定义属性<blockquote>
+<p><strong>推荐</strong>: 虽然这需要为每个自定义点定义一个自定义属性，但它创建了一个清晰的 API 契约，可以在所有样式的封装模式下工作。</p>
+</blockquote>
+</li>
+<li>使用 @mixin 声明全局 CSS</li>
+<li>使用 CSS <code>::part</code> 自定义</li>
+<li>提供 TypeScript API<blockquote>
+<p><strong>不推荐</strong>: 这种样式 API 的额外 JavaScript 成本会产生比 CSS 高得多的性能成本</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="特殊选择器"><a href="#特殊选择器" class="headerlink" title="特殊选择器"></a>特殊选择器</h3><ul>
+<li><code>:host</code> 把宿主元素作为目标的唯一方式。要把宿主样式作为条件，就要像函数一样把其它选择器放在 <code>:host</code> 后面的括号中<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:host</span> &#123;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:host</span>(<span class="selector-class">.active</span>) &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><code>:host-context</code> 在当前组件宿主元素的祖先节点中查找 CSS 类，直到文档的根节点为止。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:host</span>-context(<span class="selector-class">.active</span>) &#123;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>它只能与其它选择器组合使用。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="组件之间的交互"><a href="#组件之间的交互" class="headerlink" title="组件之间的交互"></a>组件之间的交互</h2><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>通过<code>@Input()</code>定义一个标签属性，从父组件中获取设定的标签属性。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Input</span>() <span class="attr">childField</span>:<span class="built_in">string</span> = <span class="string">&quot;default value&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>在父组件的模板中设定子组件的属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">child-component</span> [<span class="attr">childField</span>]=<span class="string">&quot;parentField&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>通过<code>@Output()</code>定义一个<code>EventEmitter</code>类型的属性，可以实现自定义事件，父组件可以通过事件监听获取子组件的数据</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义事件属性，记住要进行初始化</span></span><br><span class="line"><span class="meta">@Output</span>() myEvent = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>&lt;<span class="built_in">boolean</span>&gt;();</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">// 在需要向父组件发送数据时</span></span><br><span class="line">myEvent.<span class="title function_">emit</span>(myData)</span><br></pre></td></tr></table></figure>
+<p>在父组件模板中，使用<code>$event</code>变量获取子组件数据</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">child-component</span> (<span class="attr">myEvent</span>)=<span class="string">&quot;myHandle($event)&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="本地变量引用"><a href="#本地变量引用" class="headerlink" title="本地变量引用"></a>本地变量引用</h3><ol>
+<li><p>在父组件的模板中，为子组件标签添加<code>#childId</code>属性，则在父组件中的模板中可以直接使用childId引用子组件。如以下例子中，父组件在button中响应click事件时，调用子组件的start&#x2F;stop方法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;timer.start()&quot;</span>&gt;</span>Start<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> (<span class="attr">click</span>)=<span class="string">&quot;timer.stop()&quot;</span>&gt;</span>Stop<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">child-component</span> #<span class="attr">timer</span>&gt;</span><span class="tag">&lt;/<span class="name">child-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>只限模板中</code>,如果像在组件类中访问，需要使用<code>@ViewChild</code></p>
+</blockquote>
+</li>
+<li><p>在父组件的类中，可以使用标注<code>@ViewChild</code>获取子组件，并访问子组件的属性和方法。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(<span class="title class_">ChildComponent</span>)</span><br><span class="line"><span class="keyword">private</span> child!: <span class="title class_">ChildComponent</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p>两个组件也可以使用Service进行交互</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://angular.cn/guide/component-interaction#parent-and-children-communicate-using-a-service">例子</a></li>
+</ul>
+<h2 id="内容投影-组件嵌套"><a href="#内容投影-组件嵌套" class="headerlink" title="内容投影(组件嵌套)"></a>内容投影(组件嵌套)</h2><h3 id="单槽内容投影"><a href="#单槽内容投影" class="headerlink" title="单槽内容投影"></a>单槽内容投影</h3><p>组件可以从单一来源接受内容。<br>使用单个<code>&lt;ng-content&gt;</code>元素作为插槽。<br><code>&lt;ng-content&gt;</code> 元素是一个占位符，它不会创建真正的 DOM 元素。</p>
+<blockquote>
+<p><code>&lt;ng-content&gt;</code> 的那些自定义属性将被忽略。</p>
+</blockquote>
+<h3 id="多槽内容投影"><a href="#多槽内容投影" class="headerlink" title="多槽内容投影"></a>多槽内容投影</h3><p>组件可以从多个来源接受内容。<br>使用多个<code>&lt;ng-content&gt;</code>元素作为插槽。<br>通过<code>select</code>属性，可以指定标签名、属性、CSS类、<code>:not</code>伪类的任意组合。<br>不带有<code>select</code>的<code>&lt;ng-content&gt;</code>将作为默认插槽，接收全部未匹配的子组件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-content</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">select</span>=<span class="string">&quot;[someTag]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="条件内容投影（project）"><a href="#条件内容投影（project）" class="headerlink" title="条件内容投影（project）"></a>条件内容投影（project）</h3><p>使用条件内容投影的组件仅在满足特定条件时才渲染内容。</p>
+<p>消费组件模板</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">condition-component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ng-template</span> <span class="attr">contentDirective</span> &gt;</span></span><br><span class="line">    content to be projected.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">condition-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>父组件(ConditionComponent)模板</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--接收默认内容--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-content</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-content</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--条件渲染内容--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">&quot;condition&quot;</span> &gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用 container作为插槽，ngTemplateOutlet属性指定模板，`TemplateRef`类型的值 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ng-container</span> [<span class="attr">ngTemplateOutlet</span>]=<span class="string">&quot;content.templateRef&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>父组件(ConditionComponent)类</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;condition-component&#x27;</span>,</span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;condition-component.template.html&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ConditionComponent</span> &#123;</span><br><span class="line">  <span class="meta">@Input</span>() condition = <span class="literal">false</span>;</span><br><span class="line">  <span class="meta">@ContentChild</span>(<span class="title class_">ContentDirective</span>) content!: <span class="title class_">ContentDirective</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模板内容获取指令(ContentDirective)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Directive</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;[contentDirective]&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ContentDirective</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">public</span> templateRef: TemplateRef&lt;<span class="built_in">unknown</span>&gt;</span>) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>通过把一个指令放在 <code>&lt;ng-template&gt;</code> 元素（或一个带 * 前缀的指令）上，可以访问 <code>TemplateRef </code>的实例。内嵌视图的 <code>TemplateRef</code> 实例会以 <code>TemplateRef</code> 作为令牌，注入到该指令的构造函数中。</p>
+<p>被插入内容使用<code>&lt;ng-template&gt;</code>, 因为在显式渲染<code>&lt;ng-template&gt;</code>元素之前，Angular 不会初始化该元素的内容。</p>
+<blockquote>
+<p>此类情况下不要使用<code>&lt;ng-content&gt;</code>,因为即使不显示，仍会被初始化。</p>
+</blockquote>
+<h2 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h2><p>通过<code>ViewContainerRef.createComponent</code>接口可以实现动态组件的创建。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">viewContainerRef.<span class="property">createComponent</span>&lt;<span class="title class_">DynamicComponent</span>&gt;(<span class="title class_">MyDymaticComponent</span>);</span><br></pre></td></tr></table></figure>
+<p>例子中，<code>DynamicComponent</code>未动态组件的接口类，<code>MyDymaticComponent</code>是实现了<code>DynamicComponent</code>接口的组件类。</p>
+<p>通常我们使用<code>&lt;ng-template&gt;</code> 元素作为动态加载组件，因为它不会渲染任何额外的输出。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> <span class="attr">dynamicHost</span>&gt;</span><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>自定义一个包含ViewContainerRef属性的指令(<code>Directive</code>)作为动态加载组件的标识。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Directive</span>, <span class="title class_">ViewContainerRef</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Directive</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;[dynamicHost]&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">DynamicDirective</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">public</span> viewContainerRef: ViewContainerRef</span>) &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以在父组件中获取动态加载组件，并使用其<code>viewContainerRef</code>属性动态创建子组件。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(<span class="title class_">DynamicDirective</span>, &#123;<span class="attr">static</span>: <span class="literal">true</span>&#125;) dynamicHost!: <span class="title class_">DynamicDirective</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> viewContainerRef = <span class="variable language_">this</span>.<span class="property">dynamicHost</span>.<span class="property">viewContainerRef</span>;</span><br><span class="line">viewContainerRef.<span class="title function_">clear</span>();</span><br><span class="line">viewContainerRef.<span class="property">createComponent</span>&lt;<span class="title class_">DynamicComponent</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="模块-Module"><a href="#模块-Module" class="headerlink" title="模块(Module)"></a>模块(Module)</h1><h1 id="服务-Service"><a href="#服务-Service" class="headerlink" title="服务(Service)"></a>服务(Service)</h1><h1 id="指令-Direction"><a href="#指令-Direction" class="headerlink" title="指令(Direction)"></a>指令(Direction)</h1><p>指令是为 Angular 应用程序中的元素添加额外行为的类。</p>
+<p>使用 Angular 的内置指令，可以管理表单、列表、样式以及要让用户看到的任何内容。</p>
+<h2 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h2><h3 id="内置属性型指令"><a href="#内置属性型指令" class="headerlink" title="内置属性型指令"></a>内置属性型指令</h3><ul>
+<li><p>NgClass</p>
+<p>添加和删除<strong>一组</strong> CSS 类。</p>
+<ul>
+<li>接收值为<code>字符串</code>的表达式</li>
+<li>接收值为<code>字符串数组</code>的表达式</li>
+<li>接收值为<code>Record&lt;string,boolean&gt;</code>的表达式</li>
+</ul>
+<blockquote>
+<p>要添加或删除单个类，请使用类绑定而不是 NgClass。</p>
+</blockquote>
+<p>TODO 对于多个类，类属性和类指令都可以实现类似效果。有什么区别？</p>
+</li>
+<li><p>NgStyle</p>
+<p>添加和删除<strong>一组</strong> HTML 样式。</p>
+<ul>
+<li>接收值为<code>Record&lt;string,boolean&gt;</code>的表达式</li>
+</ul>
+<blockquote>
+<p>要添加或删除单个样式，请使用样式绑定而不是 NgClass。</p>
+</blockquote>
+<p>TODO 对于多个样式，样式属性和样式指令都可以实现类似效果。有什么区别？</p>
+</li>
+<li><p>NgModel</p>
+<p>将双向数据绑定添加到 HTML 表单元素。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> [(<span class="attr">ngModel</span>)]=<span class="string">&quot;currentItem.name&quot;</span> <span class="attr">id</span>=<span class="string">&quot;example-ngModel&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> [<span class="attr">ngModel</span>]=<span class="string">&quot;currentItem.name&quot;</span> (<span class="attr">ngModelChange</span>)=<span class="string">&quot;currentItem.name=value&quot;</span> <span class="attr">id</span>=<span class="string">&quot;example-uppercase&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>NgModel 指令适用于ControlValueAccessor支持的元素。Angular 为所有基本 HTML 表单元素提供了值访问器。</p>
+<blockquote>
+<p><strong>与双向绑定区别</strong> 除了绑定input的value值之外，还可以处理radio, checkbox, select等复杂Form元素。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="内置结构型指令"><a href="#内置结构型指令" class="headerlink" title="内置结构型指令"></a>内置结构型指令</h3><ul>
+<li><p>NgIf</p>
+<p>有条件地从模板创建或销毁子视图。</p>
+<p>如果 <code>NgIf</code> 为 <code>false</code>，则 Angular 将从 DOM 中移除一个元素及其后代。然后，Angular 会销毁其组件，从而释放内存和资源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--常用case: 在对象为null时不创建元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">&quot;currentCustomer&quot;</span>&gt;</span>Hello, &#123;&#123;currentCustomer.name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NgFor</p>
+<p>为列表中的每个条目重复渲染一个节点。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--遍历items，当前值为item, 索引为i, 变更检测为trackByItems, 索引和变更检测为可选属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let item of items; let i=index; trackBy=trackByItems&quot;</span>&gt;</span>&#123;&#123;i + 1&#125;&#125; - &#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中索引检测的实现例子如下：仅当id发生变化的时候重新渲染当前元素 </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">trackByItems</span>(<span class="attr">index</span>: <span class="built_in">number</span>, <span class="attr">item</span>: <span class="title class_">Item</span>): <span class="built_in">number</span> &#123; <span class="keyword">return</span> item.<span class="property">id</span>; &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>NgSwitch</p>
+<p>一组在备用视图之间切换的指令。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> [<span class="attr">ngSwitch</span>]=<span class="string">&quot;currentItem.feature&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-stout-item</span>    *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;stout&#x27;&quot;</span>    [<span class="attr">item</span>]=<span class="string">&quot;currentItem&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-stout-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-device-item</span>   *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;slim&#x27;&quot;</span>     [<span class="attr">item</span>]=<span class="string">&quot;currentItem&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-device-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-lost-item</span>     *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;vintage&#x27;&quot;</span>  [<span class="attr">item</span>]=<span class="string">&quot;currentItem&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-lost-item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-best-item</span>     *<span class="attr">ngSwitchCase</span>=<span class="string">&quot;&#x27;bright&#x27;&quot;</span>   [<span class="attr">item</span>]=<span class="string">&quot;currentItem&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-best-item</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- . . . --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">app-unknown-item</span>  *<span class="attr">ngSwitchDefault</span>           [<span class="attr">item</span>]=<span class="string">&quot;currentItem&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">app-unknown-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="属性型指令"><a href="#属性型指令" class="headerlink" title="属性型指令"></a>属性型指令</h2><p>使用属性型指令，可以更改 DOM 元素和 Angular 组件的外观或行为。</p>
+<ul>
+<li><p>更改DOM元素</p>
+<p>可以在指令的 <code>constructor()</code> 中添加 <code>ElementRef</code> 以注入对宿主 DOM 元素的引用。ElementRef 的 nativeElement 属性会提供对宿主 DOM 元素的直接访问权限。</p>
+</li>
+<li><p>处理用户事件</p>
+<p>适用 <code>@HostListener()</code> 装饰器可以监听宿主组件的事件。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HostListener</span>(<span class="string">&#x27;clic&#x27;</span>) <span class="title function_">onClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// do something here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取绑定值</p>
+<p>与组件的值绑定一样，使用<code>@Input</code>装饰器定义值绑定。如果指令仅接收一个值，也可以定义与指令名称相同的属性，在适用指令的同时，获取用户的绑定值。假设指令名称为myDirective。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> [<span class="attr">myDirective</span>]=<span class="string">&quot;hostField&quot;</span> <span class="attr">anotherInput</span>=<span class="string">&quot;plainValue&quot;</span>&gt;</span></span><br><span class="line">  Highlight me too!</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过 <code>NgNonBindable</code> 停用 Angular 处理过程</p>
+<p>例子中，<code>&#123;&#123; 1 + 1 &#125;&#125;</code>将作为字符串显示，而不是2</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">ngNonBindable</span>&gt;</span>This should not evaluate: &#123;&#123; 1 + 1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="结构型指令"><a href="#结构型指令" class="headerlink" title="结构型指令"></a>结构型指令</h2><p>结构指令是通过添加和删除 DOM 元素来更改 DOM 布局的指令。</p>
+<h3 id="结构型指令简写形式"><a href="#结构型指令简写形式" class="headerlink" title="结构型指令简写形式"></a>结构型指令简写形式</h3><p>应用结构指令时，它们通常以星号 * 为前缀，例如 *ngIf。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">&quot;hero&quot;</span> <span class="attr">class</span>=<span class="string">&quot;name&quot;</span>&gt;</span>&#123;&#123;hero.name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>是以下形式的语法糖</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> [<span class="attr">ngIf</span>]=<span class="string">&quot;hero&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;name&quot;</span>&gt;</span>&#123;&#123;hero.name&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Angular 会将结构指令前面的星号(<code>*</code>)转换为围绕宿主元素及其后代的 <code>&lt;ng-template&gt;</code>。</p>
+<p><code>*ngFor</code> 中的星号的简写形式与非简写的 <code>&lt;ng-template&gt;</code> 形式进行比较：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  *<span class="attr">ngFor</span>=<span class="string">&quot;let hero of heroes; let i=index; let odd=odd; trackBy: trackById&quot;</span></span></span><br><span class="line"><span class="tag">  [<span class="attr">class.odd</span>]=<span class="string">&quot;odd&quot;</span>&gt;</span></span><br><span class="line">  (&#123;&#123;i&#125;&#125;) &#123;&#123;hero.name&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 等价于 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> <span class="attr">ngFor</span> <span class="attr">let-hero</span> [<span class="attr">ngForOf</span>]=<span class="string">&quot;heroes&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">let-i</span>=<span class="string">&quot;index&quot;</span> <span class="attr">let-odd</span>=<span class="string">&quot;odd&quot;</span> [<span class="attr">ngForTrackBy</span>]=<span class="string">&quot;trackById&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> [<span class="attr">class.odd</span>]=<span class="string">&quot;odd&quot;</span>&gt;</span></span><br><span class="line">    (&#123;&#123;i&#125;&#125;) &#123;&#123;hero.name&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="每个元素一个结构指令"><a href="#每个元素一个结构指令" class="headerlink" title="每个元素一个结构指令"></a>每个元素一个结构指令</h3><p>只能将一个 结构指令 应用于一个元素。</p>
+<p>如果希望在同一个元素上使用多个指令，比如同时使用<code>*ngIf</code>和<code>*ngFor</code>,以下写法是非法的:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">&quot;condition&quot;</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let i of list&quot;</span>&gt;</span>..<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以使用<code>&lt;ng-container&gt;</code>作为包装结构实现:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ng-container</span> *<span class="attr">ngIf</span>=<span class="string">&quot;condition&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let i of list&quot;</span>&gt;</span>..<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-container</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义结构指令"><a href="#自定义结构指令" class="headerlink" title="自定义结构指令"></a>自定义结构指令</h3><ol>
+<li>在指令的构造函数中将 <code>TemplateRef</code> 和 <code>ViewContainerRef</code> 注入成私有变量。</li>
+<li><code>TemplateRef</code>可帮助你获取 <code>&lt;ng-template&gt;</code> 的内容，而 <code>ViewContainerRef</code> 可以访问视图容器。</li>
+<li>添加一个带 <code>setter</code> 的 <code>@Input()</code> 属性，并实现逻辑</li>
+</ol>
+<p>以下例子中为通过<code>appUnless</code>属性，控制是否显示<code>&lt;ng-template&gt;</code> 的内容</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Directive</span>, <span class="title class_">Input</span>, <span class="title class_">TemplateRef</span>, <span class="title class_">ViewContainerRef</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@angular/core&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Add the template content to the DOM unless the condition is true.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Directive</span>(&#123; <span class="attr">selector</span>: <span class="string">&#x27;[appUnless]&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">UnlessDirective</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> hasView = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> templateRef: TemplateRef&lt;<span class="built_in">any</span>&gt;,</span></span><br><span class="line"><span class="params">    <span class="keyword">private</span> viewContainer: ViewContainerRef</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Input</span>() <span class="keyword">set</span> <span class="title function_">appUnless</span>(<span class="params">condition: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!condition &amp;&amp; !<span class="variable language_">this</span>.<span class="property">hasView</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">viewContainer</span>.<span class="title function_">createEmbeddedView</span>(<span class="variable language_">this</span>.<span class="property">templateRef</span>);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">hasView</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (condition &amp;&amp; <span class="variable language_">this</span>.<span class="property">hasView</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">viewContainer</span>.<span class="title function_">clear</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">hasView</span> = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="指令复用"><a href="#指令复用" class="headerlink" title="指令复用"></a>指令复用</h2><p>指令组合 API 提供了一种封装可复用行为的好方法</p>
+<h3 id="宿主指令-将指令添加到组件"><a href="#宿主指令-将指令添加到组件" class="headerlink" title="宿主指令(将指令添加到组件)"></a>宿主指令(将指令添加到组件)</h3><p>从组件的 TypeScript 类内部将指令应用于组件的宿主元素。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>可以通过将 <code>hostDirectives</code> 属性添加到组件的装饰器来将指令应用于组件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;sample-component&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">&#x27;sample-component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">hostDirectives</span>: [<span class="title class_">MyDirective</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SampeComponent</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><ul>
+<li><p>当框架渲染组件时，Angular 还会创建每个宿主指令的实例。</p>
+</li>
+<li><p>指令的宿主绑定被应用于组件的宿主元素。</p>
+</li>
+<li><p>默认情况下，宿主指令的输入和输出不会作为组件公共 API 的一部分公开。</p>
+<p>可以通过扩展 <code>hostDirectives</code> 中的条目来在组件的 API 中显式包含输入和输出</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;sample-component&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">&#x27;sample-component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">hostDirectives</span>: [&#123;</span><br><span class="line">      <span class="attr">directive</span>: <span class="title class_">MyDirective</span>,</span><br><span class="line">      <span class="attr">inputs</span>: [<span class="string">&#x27;myInput&#x27;</span>],</span><br><span class="line">      <span class="attr">outputs</span>: [<span class="string">&#x27;myOutput&#x27;</span>],</span><br><span class="line">  &#125;],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SampeComponent</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>也可以为 <code>hostDirective</code> 的输入和输出起别名来自定义组件的 API：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;sample-component&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">&#x27;sample-component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">hostDirectives</span>: [&#123;</span><br><span class="line">      <span class="attr">directive</span>: <span class="title class_">MyDirective</span>,</span><br><span class="line">      <span class="attr">inputs</span>: [<span class="string">&#x27;myInput: mi&#x27;</span>],</span><br><span class="line">      <span class="attr">outputs</span>: [<span class="string">&#x27;myOutput: mo&#x27;</span>],</span><br><span class="line">  &#125;],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">SampeComponent</span> &#123; &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Angular 会在编译时静态应用宿主指令。你不能在运行时动态添加指令。</p>
+</li>
+<li><p><code>hostDirectives</code> 中使用的指令必须是 <code>standalone: true</code> 的。</p>
+</li>
+<li><p>Angular 会忽略 <code>hostDirectives</code> 属性中所应用的那些指令的 <code>selector。</code></p>
+</li>
+</ul>
+<h3 id="将指令添加到指令"><a href="#将指令添加到指令" class="headerlink" title="将指令添加到指令"></a>将指令添加到指令</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Directive</span>(&#123;</span><br><span class="line">  <span class="attr">hostDirectives</span>: [<span class="title class_">DirectiveA</span>, <span class="title class_">DirectiveB</span>],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ComposeDirective</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h4><ul>
+<li>将组合指令应用与组件时，会创建被组合的各个指令的实例。</li>
+<li>被组合指令的宿主绑定都会应用于组合指令的宿主元素。</li>
+</ul>
+<h3 id="指令的执行顺序"><a href="#指令的执行顺序" class="headerlink" title="指令的执行顺序"></a>指令的执行顺序</h3><ul>
+<li><code>宿主指令</code>和<code>直接在模板中使用的组件和指令</code>会经历<strong>相同</strong>的生命周期。</li>
+<li><code>宿主指令</code>总是会在应用它们的<code>组件或指令之前</code>执行它们的构造函数、生命周期钩子和绑定。</li>
+</ul>
+<blockquote>
+<p>这种操作顺序意味着带有 <code>hostDirectives</code> 的组件可以改写（<code>override</code>）宿主指令指定的任何宿主绑定。</p>
+</blockquote>
+<h3 id="指令的依赖注入"><a href="#指令的依赖注入" class="headerlink" title="指令的依赖注入"></a>指令的依赖注入</h3><ul>
+<li>指定了 <code>hostDirectives</code> 的组件或指令可以注入这些宿主指令的实例</li>
+<li>宿主指令 可以注入组件或指令的实例</li>
+<li>当把宿主指令应用于组件时，组件和宿主指令都可以定义提供者。</li>
+<li>如果带有 <code>hostDirectives</code> 的组件或指令以及这些宿主指令都提供相同的注入令牌，则带有 <code>hostDirectives</code> 的类定义的提供者会优先于宿主指令定义的提供者。</li>
+</ul>
+<p>TODO 太抽象，需要例子</p>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><ol>
+<li>TODO redux替代品</li>
+<li>限定TypeScript</li>
+<li>编译巨慢，开发的时候Hot Reload更是要命。</li>
+</ol>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>ng generate module MyModule<br>ng generate component –module my-module MyComponent<br>ng generate interface MyData<br>ng generate service MyService</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://silentstone.cn">Dickens Hu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://silentstone.cn/IT/Web/Angular%E5%AD%A6%E4%B9%A0/">http://silentstone.cn/IT/Web/Angular%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://silentstone.cn" target="_blank">静石随笔</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Web/">Web</a><a class="post-meta__tags" href="/tags/Angular/">Angular</a><a class="post-meta__tags" href="/tags/TypeScript/">TypeScript</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/" title="Spring Security权限认证架构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring Security权限认证架构</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dickens Hu</div><div class="author-info__description">工作学习过程中的各种笔记、记录、总结，以及生活中偶尔的感慨或者纯粹的记录。很高兴你发现了这里，enjoy!</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/pumasun"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%88%E6%9C%AC"><span class="toc-number">1.</span> <span class="toc-text">版本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="toc-number">2.1.</span> <span class="toc-text">搭建环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%8B%E4%BE%8B%E5%AD%90-%E8%A7%86%E9%A2%91"><span class="toc-number">2.2.</span> <span class="toc-text">看例子 + 视频</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">3.1.</span> <span class="toc-text">组件生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">3.2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">3.3.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89"><span class="toc-number">3.3.1.</span> <span class="toc-text">如何定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95"><span class="toc-number">3.3.2.</span> <span class="toc-text">模板语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.3.2.1.</span> <span class="toc-text">模板表达式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E6%94%AF%E6%8C%81-%E8%B5%8B%E5%80%BC%EF%BC%88-%EF%BC%89-%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%8C%E6%AF%94%E5%A6%82-new%E3%80%81typeof-%E6%88%96-instanceof-%E7%AD%89%E3%80%82-%E4%B8%B2%E8%81%94%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E6%88%96-%E8%87%AA%E5%A2%9E%E5%92%8C%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%9A-%E5%92%8C-%E4%B8%80%E4%BA%9B-ES2015-%E7%89%88%E6%9C%AC%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6-%E4%BD%8D%E8%BF%90%E7%AE%97%EF%BC%8C%E6%AF%94%E5%A6%82-%E5%92%8C-amp"><span class="toc-number">3.4.</span> <span class="toc-text">不支持- 赋值（&#x3D;, +&#x3D;, -&#x3D;, ...）- 运算符，比如 new、typeof 或 instanceof 等。- 串联表达式;或,- 自增和自减运算符：++ 和 --- 一些 ES2015+ 版本的运算符- 位运算，比如 | 和 &amp;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%8F%92%E5%80%BC"><span class="toc-number">3.4.0.1.</span> <span class="toc-text">文本插值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">3.4.0.2.</span> <span class="toc-text">模板上下文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Attribute%E7%BB%91%E5%AE%9A"><span class="toc-number">3.4.0.3.</span> <span class="toc-text">Attribute绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Class%E7%BB%91%E5%AE%9A"><span class="toc-number">3.4.0.4.</span> <span class="toc-text">Class绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Style%E7%BB%91%E5%AE%9A"><span class="toc-number">3.4.0.5.</span> <span class="toc-text">Style绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="toc-number">3.4.0.6.</span> <span class="toc-text">事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E5%88%B0%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.0.6.1.</span> <span class="toc-text">绑定到键盘事件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A"><span class="toc-number">3.4.0.7.</span> <span class="toc-text">双向绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-number">3.4.0.8.</span> <span class="toc-text">管道</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E5%8F%82%E6%95%B0"><span class="toc-number">3.4.0.8.1.</span> <span class="toc-text">管道参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%A1%E9%81%93%E4%B8%B2%E8%81%94"><span class="toc-number">3.4.0.8.2.</span> <span class="toc-text">管道串联</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%AE%E7%AE%A1%E9%81%93"><span class="toc-number">3.4.0.8.3.</span> <span class="toc-text">常用内置管道</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%8F%98%E9%87%8F"><span class="toc-number">3.4.0.9.</span> <span class="toc-text">引用变量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%BC%95%E7%94%A8%E7%9A%84%E5%90%8D%E7%A7%B0"><span class="toc-number">3.4.0.9.1.</span> <span class="toc-text">指定引用的名称</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">3.4.0.9.2.</span> <span class="toc-text">作用域</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.4.0.10.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89-1"><span class="toc-number">3.5.1.</span> <span class="toc-text">如何定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="toc-number">3.5.2.</span> <span class="toc-text">样式的范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%B7%E5%BC%8F"><span class="toc-number">3.5.3.</span> <span class="toc-text">支持自定义样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">3.5.4.</span> <span class="toc-text">特殊选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%A4%E4%BA%92"><span class="toc-number">3.6.</span> <span class="toc-text">组件之间的交互</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5"><span class="toc-number">3.6.1.</span> <span class="toc-text">输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.2.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%8F%98%E9%87%8F%E5%BC%95%E7%94%A8"><span class="toc-number">3.6.3.</span> <span class="toc-text">本地变量引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Service"><span class="toc-number">3.6.4.</span> <span class="toc-text">Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E6%8A%95%E5%BD%B1-%E7%BB%84%E4%BB%B6%E5%B5%8C%E5%A5%97"><span class="toc-number">3.7.</span> <span class="toc-text">内容投影(组件嵌套)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%A7%BD%E5%86%85%E5%AE%B9%E6%8A%95%E5%BD%B1"><span class="toc-number">3.7.1.</span> <span class="toc-text">单槽内容投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A7%BD%E5%86%85%E5%AE%B9%E6%8A%95%E5%BD%B1"><span class="toc-number">3.7.2.</span> <span class="toc-text">多槽内容投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%86%85%E5%AE%B9%E6%8A%95%E5%BD%B1%EF%BC%88project%EF%BC%89"><span class="toc-number">3.7.3.</span> <span class="toc-text">条件内容投影（project）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6"><span class="toc-number">3.8.</span> <span class="toc-text">动态组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97-Module"><span class="toc-number">4.</span> <span class="toc-text">模块(Module)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1-Service"><span class="toc-number">5.</span> <span class="toc-text">服务(Service)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4-Direction"><span class="toc-number">6.</span> <span class="toc-text">指令(Direction)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">内置指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.1.</span> <span class="toc-text">内置属性型指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-number">6.1.2.</span> <span class="toc-text">内置结构型指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-number">6.2.</span> <span class="toc-text">属性型指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4"><span class="toc-number">6.3.</span> <span class="toc-text">结构型指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%8C%87%E4%BB%A4%E7%AE%80%E5%86%99%E5%BD%A2%E5%BC%8F"><span class="toc-number">6.3.1.</span> <span class="toc-text">结构型指令简写形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E5%85%83%E7%B4%A0%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%84%E6%8C%87%E4%BB%A4"><span class="toc-number">6.3.2.</span> <span class="toc-text">每个元素一个结构指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84%E6%8C%87%E4%BB%A4"><span class="toc-number">6.3.3.</span> <span class="toc-text">自定义结构指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%A4%8D%E7%94%A8"><span class="toc-number">6.4.</span> <span class="toc-text">指令复用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%BF%E4%B8%BB%E6%8C%87%E4%BB%A4-%E5%B0%86%E6%8C%87%E4%BB%A4%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%84%E4%BB%B6"><span class="toc-number">6.4.1.</span> <span class="toc-text">宿主指令(将指令添加到组件)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">6.4.1.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-number">6.4.1.2.</span> <span class="toc-text">效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%8C%87%E4%BB%A4%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%8C%87%E4%BB%A4"><span class="toc-number">6.4.2.</span> <span class="toc-text">将指令添加到指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-1"><span class="toc-number">6.4.2.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%88%E6%9E%9C-1"><span class="toc-number">6.4.2.2.</span> <span class="toc-text">效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">6.4.3.</span> <span class="toc-text">指令的执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-number">6.4.4.</span> <span class="toc-text">指令的依赖注入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">7.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">8.</span> <span class="toc-text">常用命令</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Web/Angular%E5%AD%A6%E4%B9%A0/" title="Angular学习">Angular学习</a><time datetime="2023-09-04T03:28:37.000Z" title="发表于 2023-09-04 11:28:37">2023-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E6%9E%B6%E6%9E%84/Spring%20Security%E6%9D%83%E9%99%90%E8%AE%A4%E8%AF%81%E6%9E%B6%E6%9E%84/" title="Spring Security权限认证架构">Spring Security权限认证架构</a><time datetime="2023-06-29T08:55:03.000Z" title="发表于 2023-06-29 16:55:03">2023-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Spring%20Security%20Authorization%E9%9B%86%E6%88%90/" title="基于Servlet的Spring Security Authorization集成">基于Servlet的Spring Security Authorization集成</a><time datetime="2023-06-29T08:29:25.000Z" title="发表于 2023-06-29 16:29:25">2023-06-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Security/%E5%9F%BA%E4%BA%8EServlet%E7%9A%84Spring%20Security%20Authentication%E9%9B%86%E6%88%90/" title="基于Servlet的Spring Security Authentication集成">基于Servlet的Spring Security Authentication集成</a><time datetime="2023-06-26T08:29:25.000Z" title="发表于 2023-06-26 16:29:25">2023-06-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/IT/Spring%20Framework/Spring%20Boot/Spring%20Boot%E7%AE%80%E4%BB%8B/" title="Spring Boot简介">Spring Boot简介</a><time datetime="2023-06-16T09:56:01.950Z" title="发表于 2023-06-16 17:56:01">2023-06-16</time></div></div></div></div></div></div></main><footer id="footer" style="background: #13161e"><div id="footer-wrap"><div class="copyright">&copy;2015 - 2023 By Dickens Hu</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">鲁ICP备15029721号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
